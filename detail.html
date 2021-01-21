@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/detail.css">
+    <script>
+         function init(){
+            startimg();
+            vanish();
+        }
+         var i =1;
+         //启动轮播效果
+         function startimg(){
+    		//类名为img的div标签
+    		var img = document.getElementById("detail").getElementsByClassName("img")[0];
+	    	if(img.children.length!=0){
+	    		img.innerText="";
+	    	}else{
+	    		if(i<7){
+		    		if(i==6){
+		    			var video = document.createElement("video");
+		    			video.src="img/video/audi.m4v";
+		    			video.autoplay="autoplay";
+		    			img.innerText="";
+		    			img.appendChild(video);
+		    			//i++;
+		    			//setTimeout("startimg()",2500);
+		    		}else{
+		    			img.style.backgroundImage="url(img/detail/audi"+i+".jpg)"
+		    		}
+		    		i++;
+	    		}else{
+	    			i=1;
+	    		}
+	    	}
+	    	setTimeout("startimg()",2500);
+    	}
+
+        //鼠标移上图片显示放大镜效果
+		function bling(e){
+			var pto = document.getElementById("photo");
+			var div = document.getElementById("big");
+			div.style.width="300px";
+			div.style.height="300px";
+			//e表示激活该事件的标签
+			var bimg = e.getAttribute("style");//background-image: url(img/detail/audineishi0.png);
+			//拆分字符串获得
+			var str = bimg.split(":")[1];
+			str=str.substring(5,str.length-2);
+			div.style.backgroundImage="URL("+str+")";
+			//计算鼠标在该图片上的百分比位置
+			var x=event.offsetX/380*100
+			var y=event.offsetY/270*100
+			//console.log(x+"---"+y);
+			//设置放大后图片的偏移效果，和小图等比例
+			div.style.backgroundPosition=x+"%"+" "+y+"%";
+			//当鼠标位于大致x=1010像素的位置时，放大的图片右边缘会和网页右边极限接触，此时继续右移查看图片信息时，放大效果将无法看到，因此调整x方向的放大图位置
+			if(event.clientX>1010){
+				div.style.left=event.clientX-350+"px";
+			}else{
+				div.style.left=event.clientX+50+"px";
+			}
+			console.log(event.clientX+"---"+event.clientY);
+            var w = div.style.width;
+            var h = div.style.height;
+            console.log("宽："+w+"----高："+h);
+			//clientY是鼠标所在位置相对于整个网页最左上角基点的坐标值，完美情况下应该根据用户下拉情况得到最佳偏移补偿，这里取400固定了放大框的y偏移量
+			div.style.top=event.clientY+400+"px";
+		}
+        
+        // 鼠标离开放大效果消失
+		function vanish(){
+            var div = document.getElementById("big");
+			div.style.width="0px";
+			div.style.height="0px";
+            div.style.border="0px";
+		}
+    </script>
+</head>
+<body onload="init()">
+    <div id="d">
+        <!-- 顶部 -->
+        <div id="top">
+            <!-- 左部连接到其他网站 -->
+            <div class="left">
+                <li><a href="http://www.faw.com.cn/fawcn/373704/index.html" target="_blank">一汽集团</a></li>
+                <li><a href="#dzzj">大众之家</a></li>
+                <li><a href="https://www.xcar.com.cn/bbs/forumdisplay.php?fid=10003" target="_blank">大众俱乐部</a></li>
+                <li><a href="https://www.audi.cn/cn/web/zh.html"  target="_blank">奥迪品牌</a></li>
+                <li><a href="https://jetta.faw-vw.com/" target="_blank">捷达品牌</a></li>
+            </div>
+            <!-- 右部是企业logo -->
+            <div class="right">
+                <div><img src="img/logo.png" alt="官方Logo"/></div>
+            </div>
+        </div>
+        <!-- banner -->
+        <div id="banner"><p>奥迪A6L 2020年型</p></div>
+        <!--详细信息-->
+        <div id="detail">
+            <!-- 汽车详情介绍 -->
+            <div class="title">详细信息 </div>
+            <hr/>
+            <div class="img"></div>
+            <div class="car_info">
+                <table border="0" cellspacing="0">
+                    <tr >
+                        <td width="130px" class="t">车身尺寸mm</td>
+                        <td width="136px">5038*1886*1475</td>
+                        <td width="130px" class="t">轴距mm</td>
+                        <td width="60px">3024</td>
+                        <td ></td>
+                        <td ></td>
+                    </tr>
+                    <tr >
+                        <td class="t">发动机(马力)</td>
+                        <td >190/224 /340</td>
+                        <td class="t">最大功率转速(rpm)</td>
+                        <td colspan="2" style="text-align: left;">&nbsp;&nbsp;4200-6400</td>
+                        <td ></td>
+                    </tr>
+                    <tr >
+                        <td class="t">最高时速(km/h)</td>
+                        <td>245</td>
+                        <td class="t">环保标准</td>
+                        <td >国6</td>
+                        <td width="80px" class="t">综合耗油量EU</td>
+                        <td width="60px">6.2</td>
+                    </tr>
+                    <tr >
+                        <td class="t">油箱容积(L)</td>
+                        <td>73</td>
+                        <td class="t">百公里加速(s)</td>
+                        <td>8.0</td>
+                        <td class="t">行李箱容积(L)</td>
+                        <td>430</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="book">
+                <a href=""><div class="text">预约试驾</div>
+                <div class= "img"><img src="img/detail/yysj.png"></div></a>
+            </div>
+        </div>
+        <!--车辆照片-->
+        <div id="photo">
+            <div class="title">精彩照片<a> (鼠标移上可以放大)</a></div>
+            <hr/>
+            <dl class="imgbox">
+                <!-- 当鼠标移上显示放大图，当鼠标移出放大图消失 -->
+                <dt style="background-image: url(img/detail/audineishi0.png);" onmousemove="bling(this)" onmouseout="vanish()"></dt>
+                <dd >内饰</dd>
+            </dl>
+            <dl class="imgbox">
+                <!-- 当鼠标移上显示放大图，当鼠标移出放大图消失 -->
+                <dt style="background-image: url(img/detail/audineishi1.png);" onmousemove="bling(this)" onmouseout="vanish()"></dt>
+                <dd >中控</dd>
+            </dl>
+            <dl class="imgbox">
+                <!-- 当鼠标移上显示放大图，当鼠标移出放大图消失 -->
+                <dt style="background-image: url(img/detail/audineishi2.png);" onmousemove="bling(this)" onmouseout="vanish()"></dt>
+                <dd >外观</dd>
+            </dl>
+            <div id="big"></div>
+        </div>
+        <div id="main_bottom">
+            <!-- 汽车售价 -->
+            <div id="price">
+                <table border="0" cellpadding="0">
+                    <tr class="header">
+                        <td class="h_0">车型</td>
+                        <td class="h_1"><a href="#">在产</a></td>
+                        <td class="h_2"><a href="#">停售</a></td></tr>
+                </table>
+                <table border="0" cellspacing="" cellpadding="0">
+                    <tr class="t_h">
+                        <th class="car_name">2.0L涡轮增压 190马力</th>
+                        <th class="right_h">变速箱</th>
+                        <th class="right_h">指导价</th>
+                        <th class="right_n_h">经销商参考价</th>
+                        <th colspan="2" class="right_n_h"></th>
+                    </tr>
+                    <tr class="bottom_h">
+                        <td>2020款奥迪A6L 2.0T自动40TFSI豪华动感型</td>
+                        <td>7档双离合</td>
+                        <td>40.98万</td>
+                        <td class="jxsp">32.37万</td>
+                        <td><button>询价</button></td>
+                        <td><button>+对比</button></td>
+                    </tr>
+                    <tr class="bottom_n_h">
+                        <td>2020款奥迪A6L 2.0T自动40TFSI豪华致雅型</td>
+                        <td>7档双离合</td>
+                        <td>40.98万</td>
+                        <td class="jxsp">32.37万</td>
+                        <td><button>询价</button></td>
+                        <td><button>+对比</button></td>
+                    </tr>
+                </table>
+                <table border="0" cellspacing="" cellpadding="0">
+                    <tr class="t_h">
+                        <th class="car_name">2.0L涡轮增压 224马力</th>
+                        <th class="right_h">变速箱</th>
+                        <th class="right_h">指导价</th>
+                        <th class="right_n_h">经销商参考价</th>
+                        <th colspan="2" class="right_n_h"></th>
+                    </tr>
+                    <tr class="bottom_h">
+                        <td>2020款奥迪A6L 2.0T自动45TFSI臻选动感型</td>
+                        <td>7档双离合</td>
+                        <td>43.98万</td>
+                        <td class="jxsp">34.74万</td>
+                        <td><button>询价</button></td>
+                        <td><button>+对比</button></td>
+                    </tr>
+                    <tr class="bottom_h">
+                        <td>2020款奥迪A6L 2.0T自动45TFSI臻选致雅型</td>
+                        <td>7档双离合</td>
+                        <td>43.98万</td>
+                        <td class="jxsp">34.74万</td>
+                        <td><button>询价</button></td>
+                        <td><button>+对比</button></td>
+                    </tr>
+                    <tr class="bottom_h">
+                        <td>2020款奥迪A6L 2.0T自动45TFSI quattro动感型</td>
+                        <td>7档双离合</td>
+                        <td>46.98万</td>
+                        <td class="jxsp">37.11万</td>
+                        <td><button>询价</button></td>
+                        <td><button>+对比</button></td>
+                    </tr>
+                    <tr class="bottom_h">
+                        <td>2020款奥迪A6L 2.0T自动45TFSI quattro动感型</td>
+                        <td>7档双离合</td>
+                        <td>46.98万</td>
+                        <td class="jxsp">37.11万</td>
+                        <td><button>询价</button></td>
+                        <td><button>+对比</button></td>
+                    </tr>
+                    <tr class="bottom_h">
+                        <td>2020款奥迪A6L 2.0T自动45TFSI quattro动感型</td>
+                        <td>7档双离合</td>
+                        <td>50.68万</td>
+                        <td class="jxsp">40.04万</td>
+                        <td><button>询价</button></td>
+                        <td><button>+对比</button></td>
+                    </tr>
+                    <tr class="bottom_n_h">
+                        <td>2020款奥迪A6L 2.0T自动45TFSI quattro致雅型</td>
+                        <td>7档双离合</td>
+                        <td>50.68万</td>
+                        <td class="jxsp">40.04万</td>
+                        <td><button>询价</button></td>
+                        <td><button>+对比</button></td>
+                    </tr>
+                </table>
+                <table border="0" cellspacing="" cellpadding="0">
+                    <tr class="t_h">
+                        <th class="car_name">3.0L涡轮增压 340马力</th>
+                        <th class="right_h">变速箱</th>
+                        <th class="right_h">指导价</th>
+                        <th class="right_n_h">经销商参考价</th>
+                        <th colspan="2" class="right_n_h"></th>
+                    </tr>
+                    <tr class="bottom_h">
+                        <td>2020款奥迪A6L 3.0T自动55TFSI quattro致雅型</td>
+                        <td>7档双离合</td>
+                        <td>54.48万</td>
+                        <td class="jxsp">43.04万</td>
+                        <td><button>询价</button></td>
+                        <td><button>+对比</button></td>
+                    </tr>
+                    <tr class="bottom_n_h">
+                        <td>2020款奥迪A6L 3.0T自动55TFSI quattro动感型</td>
+                        <td>7档双离合</td>
+                        <td>65.38万</td>
+                        <td class="jxsp">51.65万</td>
+                        <td><button>询价</button></td>
+                        <td><button>+对比</button></td>
+                    </tr>
+                </table>
+            </div>
+            <!-- 汽车销量 -->
+            <div id="sales">
+                <table border="0" cellpadding="0">
+                    <tr class="header">
+                        <td class="h_0">奥迪A6L销量</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td class="sale0">
+                            <li class="sale_h">16479</li>
+                            <li class="sale_t">8月销量</li>
+                            <li class="sale_t">(辆)</li>
+                        </td>
+                        <td class="sale1">
+                            <li class="sale_h">106383</li>
+                            <li class="sale_t">2020年累计</li>
+                            <li class="sale_t">(辆)</li>
+                        </td>
+                        <td class="sale2">
+                            <li class="sale_h">41.79</li>
+                            <li class="sale_t">8月均成交价</li>
+                            <li class="sale_t">(万)</li>
+                        </td>
+                    </tr>
+                </table>
+                <p><img src="img/chose/orange.png" alt="">&nbsp;成交价 单位:万&nbsp;&nbsp;&nbsp;<img src="img/chose/green.png">&nbsp;销量 单位:辆</p>
+                <div class="xlcjjpic"></div>
+            </div>
+        </div>
+        <div id="buy">
+            <p>奥 迪 A6L 2020 年 型</p>
+            <p>见 证 你 的 时 代</p>
+            <div><img src="img/detail/click.png"/><a href="https://contact.audi.cn/testdrive/6525/6548.html">预约试驾·驾驭新生</a></div>
+        </div>
+    </div>
+    <!-- 底部版权/社交信息 -->
+    <div id="bottom">
+        <div class="link">
+            <table border="0" cellspacing="0">
+                <tr >
+                    <td style="border-top: solid 1px #ccc;">购车</td>
+                    <td style="border-top: solid 1px #ccc;">服务</td>
+                    <td style="border-top: solid 1px #ccc;">品牌</td>
+                    <td style="border-top: solid 1px #ccc;">社交与电商</td>
+                </tr>
+                <tr>
+                    <td><a href="chose.html" target="_blank">车型总览</a></td>
+                    <td><a href="https://contact.faw-vw.com/finance/finance.htm" target="_blank">金融服务</a></td>
+                    <td><a href="https://www.faw-vw.com/" target="_blank">一汽-大众</a></td>
+                    <td><a href="https://vw.faw-vw.com/wechat/weixin.shtml" target="_blank">官方微信</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://vw.faw-vw.com/dasweltauto/" target="_blank">二手车</a></td>
+                    <td><a href="https://contact.faw-vw.com/finance/finance.htm?p=3" target="_blank">延保服务</a></td>
+                    <td><a href="https://vw.faw-vw.com/events/2015/" target="_blank">品牌活动</a></td>
+                    <td><a href="https://weibo.com/fawvw?topnav=1&wvr=5&topsug=1" target="_blank">官方微博</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://contact.faw-vw.com/drive/test_drive.htm" target="_blank">预约试驾</a></td>
+                    <td><a href="https://vw-entrynavi.autonavi.com/entrynavi/download/map_data?&brand=vw&project=entrynavi&channel=vw-entry&timestamp=1599654281338&signature_nonce=108199&signature=NjA3YTdmMWZjNGQxYmVhN2E5YWQzMmZjNDk3ZmM0ZjMyYWJlYmM4YTNiY2E2OGNjYjAwMWM5NjdlZGQzOTQ4Mg%3D%3D&signature_method=HMAC-SHA256&signature_version=1.0" target="_blank">地图下载</a></td>
+                    <td><a href="https://contact.faw-vw.com/brand/dealer_recruitment.htm" target="_blank">经销商招募</a></td>
+                    <td><a href="https://mall.faw-vw.com/v2/index.html" target="_blank">一汽-大众商城</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://contact.faw-vw.com/tools/comparison.htm" target="_blank">车型对比</a></td>
+                    <td><a href="http://vwimccs.faw-vw.com/webchat/chatmain.jsp?workgroup=ar1000@workgroup.10.226.60.176&chatID=qV7eEBnPx8" target="_blank">在线客服</a></td>
+                    <td></td>
+                    <td><a href="https://vw.faw-vw.com/wechat/app.shtml" target="_blank">超级APP</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://contact.faw-vw.com/dealer/search.htm" target="_blank">经销商查询</a></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="https://faw-vw.tmall.com/" target="_blank">天猫旗舰店</a></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="https://mall.jd.com/index-920366.html" target="_blank">京东旗舰店</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class=copyright>
+            <li class="c_l">法律声明 | 隐私条款 | 吉ICP备09000793号 | 吉公安备22010602000029号</li>
+            <li class="c_r">©一汽-大众汽车有限公司</li>
+        </div>
+    </div>    
+</body>
+</html>

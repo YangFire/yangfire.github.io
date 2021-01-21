@@ -1,33 +1,221 @@
 ﻿<!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>vue.js添加待办事项样式特效 - 站长素材</title>
-
-<link rel="stylesheet" href="css/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一汽-大众汽车有限公司</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
-<body>
-
-<div class="app-container" id="taskList">
-  <h1 class="app-header">待办事项清单</h1>
-  <div class="add-task">
-    <input type="text" autocomplete="off" placeholder="添加新事项" v-model="tasks.name" @keyup.enter="newItem" class="task-input">
-		<input type="submit" value="" class="submit-task" @click="newItem" title="Add Task">
-  </div>
-  <ul class="task-list">
-		<li class="task-list-item" v-for="task in tasks">
-			<label class="task-list-item-label">
-        <input type="checkbox">
-				<span>{{task.name}}</span>
-			</label>
-			<span @click="delItem(task)" class="delete-btn" title="Delete Task">{{task.del}}</span>
-		</li>
-	</ul>
-</div>
-
-<script src='js/vue.min.js'></script>
-<script src="js/script.js"></script>
-
+<body onload="a();moveBanner()">
+    <div id="container">
+        <!-- 顶部 -->
+        <div id="top">
+            <!-- 左部连接到其他网站 -->
+            <div class="left">
+                <li><a href="http://www.faw.com.cn/fawcn/373704/index.html" target="_blank">一汽集团</a></li>
+                <li><a href="#dzzj">大众之家</a></li>
+                <li><a href="https://www.xcar.com.cn/bbs/forumdisplay.php?fid=10003" target="_blank">大众俱乐部</a></li>
+                <li><a href="https://www.audi.cn/cn/web/zh.html"  target="_blank">奥迪品牌</a></li>
+                <li><a href="https://jetta.faw-vw.com/" target="_blank">捷达品牌</a></li>
+            </div>
+            <!-- 右部是企业logo -->
+            <div class="right">
+                <div><img src="img/logo.png" alt="官方Logo"/></div>
+            </div>
+        </div>
+        <!-- 车型滚动与搜索栏 -->
+        <div id="search">
+            <!-- 热销车型滚动 -->
+            <div id="scorrl">
+                <div class="img" onmouseover="stop()" onmouseout="begin()">
+                    <div><a href="https://vw.faw-vw.com/models/allnew-bora/" target="_blank"><img src="img/bora.png" alt="宝来传奇"><p style="text-align: center;">宝来传奇</p></a></div>
+                    <div><a href="https://vw.faw-vw.com/models/cc/allnewcc/"  target="_blank"><img src="img/cc.png" alt="全新cc"><p style="text-align: center;">全新CC</p></a></div>
+                    <div><a href="https://vw.faw-vw.com/models/newgolf/" target="_blank"><img src="img/Golf.png" alt="高尔夫"><p style="text-align: center;">高尔夫</p></a></div>
+                    <div><a href="https://vw.faw-vw.com/models/tayron/" target="_blank"><img src="img/tanyue.png" alt="探岳"><p style="text-align: center;">探岳</p></a></div>
+                </div>
+            </div>
+            <!-- 搜索栏 -->
+            <div class="search">
+                <div class="s-text-1">车之道，为大众</div>
+                <div class="s-text-2"><input type="text" placeholder="搜索热销车型、价格区间、新能源......" onfocus="b()" onblur="c()"></div>
+                <div class="s-img"></div>
+            </div>
+        </div>
+        <!-- 导航和banner栏 -->
+        <div id="fix">
+            <div id="navi">
+                <div class="navi">
+                    <div class="navi-img"><img src="img/car.png"></div>
+                    <div class="navi-link"><a href="chose.html" target="_blank"> 车型总览</a></div>
+                </div>
+                <div class="navi">
+                    <div class="navi-img"><img src="img/book.png"></div>
+                    <div class="navi-link"><a href="https://contact.faw-vw.com/buy_car/buy_car.htm" target="_blank"> 购车指南</a></div>
+                </div>
+                <div class="navi">
+                    <div class="navi-img"><img src="img/change.png"></div>
+                    <div class="navi-link"><a href="https://vw.faw-vw.com/dasweltauto/" target="_blank"> 二手车</a></div>
+                </div>
+                <div class="navi">
+                    <div class="navi-img"><img src="img/service.png"></div>
+                    <div class="navi-link"><a href="https://vw.faw-vw.com/service/index.html" target="_blank"> 售后服务</a></div>
+                </div>
+                <div class="navi">
+                    <div class="navi-img"><img src="img/vw.png"></div>
+                    <div class="navi-link"><a href="https://vw.faw-vw.com/news/" target="_blank"> 大众品牌</a></div>
+                </div>
+                <div class="navi">
+                    <div class="navi-img"><img src="img/mall.png"></div>
+                    <div class="navi-link"><a href="https://mall.faw-vw.com/v2/index.html" target="_blank"> 一汽大众商城</a></div>
+                </div>
+                <div class="navi">
+                    <div class="navi-img"><img src="img/tmall.png"></div>
+                    <div class="navi-link"><a href="https://faw-vw.tmall.com/" target="_blank"> 天猫旗舰店</a></div>
+                </div>
+                <div class="navi">
+                    <div class="navi-img"><img src="img/jd.png"></div>
+                    <div class="navi-link"><a href="https://mall.jd.com/index-920366.html" target="_blank"> 京东旗舰店</a></div>
+                </div>
+            </div>
+            <!-- banner页 -->
+            <div id="banner" ></div>
+        </div>
+        <!-- main -->
+        <div id="main">
+            <!-- 左部是一个视频和自由购车 -->
+            <div id="main_left">
+                <div class="Adtext"><img src="img/heart.png"/>&nbsp;<em>Follow Your Heart!</em></div>
+                <div class="video"><video src="img/video/cc.m4v" controls ></video></div>
+                <div class="selfdefin">
+                    <p class="s_1"><strong>在线定制</strong></p>
+                    <p class="s_2"><strong>你的爱车，由你定义</strong></p>
+                    <p class="s_3">2020全新CC猎装版重磅上市</p>
+                    <p><a href="https://vw.faw-vw.com/models/cc/allnewcc/">查看详情</a></p>
+                </div>
+            </div>
+            <!-- 右部是新闻消息 -->
+            <div id="main_right">
+                <div class="m_r_i" style="border-bottom: solid 1px #ccc;">新闻中心</div>
+                <div class="news">
+                    <div class="a">
+                        <div class="l_img"><img src="img/main_news/newpic1.jpg" alt="ccEOP"></div>
+                        <div class="r_new">&nbsp;&nbsp;&nbsp;&nbsp;2018年5月20日，内地最受欢迎轿跑CC迎来了老款的EOP仪式，轿车二厂焊装车间全体员工不懈努力，为打造质量上乘，安全卓越的汽车上下同心......<br><br><a href="#ckgd1">查看更多</a></div>
+                    </div>
+                    <div class="a">
+                        <div class="l_img"><img src="img/main_news/newpic2.jpg" alt="风景画1"></div>
+                        <div class="r_new">&nbsp;&nbsp;&nbsp;&nbsp;2020年3月30日，一汽-大众第2000万辆汽车——新迈腾GTE在长春基地总装车间下线。公司经管会成员、高级经理及员工代表们通过视频连线方式，共同见证了这一具有里程碑意义的重要时刻......<br><br><a href="#ckgd2">查看更多</a></div>
+                    </div>
+                    <div class="a">
+                        <div class="l_img"><img src="img/main_news/newpic3.jpg" alt="风景画2"></div>
+                        <div class="r_new">&nbsp;&nbsp;&nbsp;&nbsp;2020年4月25日，一汽-大众正式发布高性能新能源技术品牌GTE；一汽-大众旗下首款新能源SUV——探岳GTE 插电式混合动上市......<br><br><a href="#ckgd3">查看更多</a></div>
+                    </div>
+                </div >
+                <div class="m_r_i"><a href="https://vw.faw-vw.com/news/" target="_blank">查看更多</a></div>
+            </div>
+        </div>
+        <!-- 底部版权/社交信息 -->
+        <div id="bottom">
+            <div class="link">
+                <table border="0" cellspacing="0">
+                    <tr >
+                        <td style="border-top: solid 1px #ccc;">购车</td>
+                        <td style="border-top: solid 1px #ccc;">服务</td>
+                        <td style="border-top: solid 1px #ccc;">品牌</td>
+                        <td style="border-top: solid 1px #ccc;">社交与电商</td>
+                    </tr>
+                    <tr>
+                        <td><a href="chose.html" target="_blank">车型总览</a></td>
+                        <td><a href="https://contact.faw-vw.com/finance/finance.htm" target="_blank">金融服务</a></td>
+                        <td><a href="https://www.faw-vw.com/" target="_blank">一汽-大众</a></td>
+                        <td><a href="https://vw.faw-vw.com/wechat/weixin.shtml" target="_blank">官方微信</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://vw.faw-vw.com/dasweltauto/" target="_blank">二手车</a></td>
+                        <td><a href="https://contact.faw-vw.com/finance/finance.htm?p=3" target="_blank">延保服务</a></td>
+                        <td><a href="https://vw.faw-vw.com/events/2015/" target="_blank">品牌活动</a></td>
+                        <td><a href="https://weibo.com/fawvw?topnav=1&wvr=5&topsug=1" target="_blank">官方微博</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://contact.faw-vw.com/drive/test_drive.htm" target="_blank">预约试驾</a></td>
+                        <td><a href="https://vw-entrynavi.autonavi.com/entrynavi/download/map_data?&brand=vw&project=entrynavi&channel=vw-entry&timestamp=1599654281338&signature_nonce=108199&signature=NjA3YTdmMWZjNGQxYmVhN2E5YWQzMmZjNDk3ZmM0ZjMyYWJlYmM4YTNiY2E2OGNjYjAwMWM5NjdlZGQzOTQ4Mg%3D%3D&signature_method=HMAC-SHA256&signature_version=1.0" target="_blank">地图下载</a></td>
+                        <td><a href="https://contact.faw-vw.com/brand/dealer_recruitment.htm" target="_blank">经销商招募</a></td>
+                        <td><a href="https://mall.faw-vw.com/v2/index.html" target="_blank">一汽-大众商城</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://contact.faw-vw.com/tools/comparison.htm" target="_blank">车型对比</a></td>
+                        <td><a href="http://vwimccs.faw-vw.com/webchat/chatmain.jsp?workgroup=ar1000@workgroup.10.226.60.176&chatID=qV7eEBnPx8" target="_blank">在线客服</a></td>
+                        <td></td>
+                        <td><a href="https://vw.faw-vw.com/wechat/app.shtml" target="_blank">超级APP</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://contact.faw-vw.com/dealer/search.htm" target="_blank">经销商查询</a></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="https://faw-vw.tmall.com/" target="_blank">天猫旗舰店</a></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="https://mall.jd.com/index-920366.html" target="_blank">京东旗舰店</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class=copyright>
+                <li class="c_l">法律声明 | 隐私条款 | 吉ICP备09000793号 | 吉公安备22010602000029号</li>
+                <li class="c_r">©一汽-大众汽车有限公司</li>
+            </div>
+        </div>
+    </div>
+    <script>
+        var num=1;
+        var img = (document.getElementsByClassName("img"))[0];
+        img.innerHTML=img.innerHTML+img.innerHTML;
+        var x=0;
+        var isMove=true;
+        function a(){
+            //changeBanner();
+            if(isMove){
+                x=x-1;
+                if(x<-1220){
+                    x=0;
+                }
+                img.style.left=x+"px";
+            }
+            setTimeout("a()",20); 
+        }
+        function stop(){
+            isMove=false;
+        }
+        function begin(){
+            isMove=true;
+        }
+        //banner页图片轮播
+        function moveBanner(){
+            var ban = document.getElementById("banner");
+            ban.style.backgroundImage="url(img/banner/carpic"+num+".jpg)";
+            num++;
+            if(num>5){num=1;}
+            setTimeout("moveBanner()",2000);
+        }
+        //搜索条内容文字得焦消失
+        function b(){
+            var s=document.getElementsByClassName("s-text-2")[0].getElementsByTagName("input")[0];
+            console.log(s);
+            var str = "搜索热销车型、价格区间、新能源......";
+            if (s.getAttribute("placeholder")==str) {
+                s.setAttribute("placeholder","");
+            }
+        }
+        //搜索条内容文字失焦再现
+        function c(){
+            var s=document.getElementsByClassName("s-text-2")[0].getElementsByTagName("input")[0];
+            console.log(s);
+            var str = "搜索热销车型、价格区间、新能源......";
+            if (s.getAttribute("placeholder")=="") {
+                s.setAttribute("placeholder",str);
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,85 @@
+*{margin: 0px;padding:0px;font-family: 微软雅黑;}
+a{text-decoration: none;color: black;}
+/*详情页*/
+#d{width:1200px; height:1800px;margin:auto;background-color: #fff;}
+
+/* 顶部条 */
+#d>#top{width: 1200px;height: 36px;}
+#d>#top>.left{width: 500px;height: 36px;list-style: none;float: left;}
+#d>#top>.left>li{width: 100px; ;line-height: 36px;float: left;text-align: center;}
+#d>#top>.left a{width:100px;height:36px;display:block;font-size:12px;text-decoration: none;color: black;}
+#d>#top>.left a:hover{background-color:#CCC;color: white;font-size:16px;font-weight: bold;border-radius: 5px;}
+
+/* 企业logo */
+#d>#top>.right{width: 162px;height: 36px;float: right;margin-right:45px;}
+
+/* banner */
+#banner{width: 1200px;height: 376px;background-image: url(../img/detail/banner-a6l.jpg);}
+#banner>p{color: #fff;font-size: 36px;font-weight: bold;text-indent: 40px;margin-top: 40px;float: left;}
+
+/* 汽车详细信息 */
+#detail{width: 1200px;height: 300px;}
+#detail>.title{font-size:30px;font-weight: bold;width:150px;height: 40px;line-height: 40px;text-align:center;border-radius: 5px;margin-left: 10px;}
+#detail>.img{width:250px ;height: 200px;margin:35px 25px;float: left;}
+#detail>.img>video{width:250px ;height: 200px;border: 0px;}
+#detail>.car_info{width:600px ;height:260px;float: left;}
+#detail>.car_info>table{margin:34px 20px;}
+#detail>.car_info tr{height:50px;}
+#detail>.car_info td{text-align: center;border-bottom: solid 2px #ccc;}
+#detail>.car_info .t{text-align: left;color: rgba(0,0,0, 0.5);}
+#detail>.book{width:300px ;height:260px;float: left;}
+#detail>.book .text{width: 300px;height:50px;text-align: center;font-size: 30px;font-weight: bold;margin-top: 60px;}
+#detail>.book .img{width:300px;height: 140px;}
+#detail>.book .img img{width:100px;margin-left: 100px;}
+/* 精彩照片 */
+#photo{width: 1200px;height: 400px;}
+#photo>.title{font-size:30px;font-weight: bold;width:300px;text-indent:10px;height: 40px;border-radius: 5px;margin: 0px 0px 13px 10px;}
+#photo>.title>a{color: rgba(0,0,0, 0.5);font-size: 12px;}
+#photo>.imgbox{width: 380px;height:310px;margin: 20px 10px;float: left;}
+#photo>.imgbox>dt{width: 380px;height:270px;background-size: 100% 100%;}
+#photo>.imgbox>dd{width: 380px;height:40px;text-align: center;font-size: 24px;line-height: 40px;}
+#big{position:absolute;border:dotted 2px orange;border-radius: 30px;}
+/* 各款售价 */
+#main_bottom{width: 1200px;height: 444px;margin-bottom: 30px;}
+#price{width:800px;height: 444px;float: left}
+#price>table{display: block;}
+#price .h_0{font-size:30px;font-weight: bold;width:1000px;height: 48px;border-bottom:solid 1px  #ccc;text-indent: 20px;}
+#price .h_1{width:100px;height: 48px;border-bottom:solid 1px #ccc;text-align:center;}
+#price .h_2{width:100px;height: 48px;border-bottom:solid 1px #ccc;text-align:left;}
+#price .t_h{text-align: center;height: 30px;}
+#price button{width:50px;margin: auto;font-size: 12px;}
+#price .jxsp{color: red;font-weight: bold;}
+#price .t_h>.car_name{width:350px;text-align: center;border-right: solid 1px #ccc;}
+#price .t_h>.right_h{width:95px;text-align: center;border-right: solid 1px #ccc;}
+#price .t_h>.right_n_h{width:110px;text-align: center;}
+#price .bottom_h{text-align: center;height: 25px;}
+#price .bottom_h>td{border-bottom: solid 2px #ccc;}
+#price .bottom_n_h{text-align: center;height: 25px;}
+/* 销售情况 */
+#sales{width:400px;height: 444px;float: right;}
+#sales li{list-style: none;}
+#sales .h_0{font-size:30px;font-weight: bold;width:400px;height: 48px;border-bottom:solid 1px  #ccc;text-indent: 20px;}
+#sales .sale_h{font-size: 20px;font-weight: bold;}
+#sales .sale_t{font-size: 10px;}
+#sales .sale0{width:133px ;height: 80px;border:solid 1px #ccc;border-top: solid 4px orange;text-align: center;margin-top: 10px;}
+#sales .sale1{width:133px ;height: 80px;border:solid 1px #ccc;border-top: solid 4px skyblue;text-align: center;}
+#sales .sale2{width:133px ;height: 80px;border:solid 1px #ccc;border-top: solid 4px greenyellow;text-align: center;}
+#sales p{display: flex;align-items: center;padding:0px 105px;font-size: 8px;margin-top: 10px;}
+#sales p>img{width: 7px;height: 7px;}
+#sales>.xlcjjpic{width: 400px;height:280px;background-image: url(../img/chose/xlcjj.png);background-repeat:no-repeat ;background-size: 90% 90%;margin:0px 10px 10px 20px;}
+
+/* 预约试驾购买 */
+#buy{width: 1200px;height: 200px;}
+#buy>p{display:block;text-align: center;font-size: 40px;font-weight: bolder;}
+#buy>div{height:30px;display: flex;align-items:center;padding:0px 490px 0px 490px;margin-top: 15px;}
+#buy>div>a{text-decoration: none;font-size: 20px;color: green;line-height: 30px;text-indent: 10px;}
+#buy>div>img{width: 30px;height: 30px;}
+
+/* bottom */
+#bottom{width: 1200px;height: 315px;border-radius: 5px;margin: auto;}
+#bottom>.link{width:1200px;font-size: 12px;}
+#bottom>.link>table{width: 1200px;height:300px;text-align: center;}
+#bottom>.link>table a{text-decoration: none;color:rgba(0, 0, 0,0.5);}
+#bottom>.copyright{width: 1200px; font-size: 10px;color:#ccc}
+#bottom>.copyright>.c_l{list-style:none;float: left;}
+#bottom>.copyright>.c_r{list-style:none;float: right;}

@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车之道，为大众|一汽-大众|全部车型</title>
+    <script type="text/javascript" src="js/jquery-2.1.0.js" ></script>
+    <link rel="stylesheet" href="css/chose.css">
+    <script>
+        var img;
+        function init(){
+            img = document.getElementsByClassName("img")[0];
+            a();
+            imgapply();
+            gene(['奥迪','大众','捷达']);
+        }
+        var num=1;
+        function a(){
+            img.style.backgroundImage="url(img/chose/toppic"+num+".jpg)";
+            num++;
+            if(num>6){num=1;}
+            setTimeout("a()",5000);
+        }
+        //banner图后退方法
+        function back(){
+            
+			img.style.backgroundImage="url(img/chose/toppic"+num+".jpg)";
+            num--;
+            if(num<1){
+                num=6;
+            }
+        }
+        //banner图前进方法
+        function next(){
+            img.style.backgroundImage="url(img/chose/toppic"+num+".jpg)";
+            num++;
+            if(num>6){
+                num=1;
+            }
+        }
+		//banner图左右箭头消失显示方法
+        function show(){
+			var arrowl = document.getElementById("arrowl");
+			var arrowr = document.getElementById("arrowr");
+			arrowl.style.opacity="0.5";
+			arrowr.style.opacity="0.5";
+		}
+        //banner图左右箭头消失显示方法
+        function hide(){
+			var arrowl = document.getElementById("arrowl");
+			var arrowr = document.getElementById("arrowr");
+			arrowl.style.opacity="0";
+			arrowr.style.opacity="0";
+		}
+
+        //中部栏不同菜单显示不同链接
+        function gene(arr){
+        	var divpar = document.getElementsByClassName("diffcont")[0];
+        	divpar.innerHTML="";
+        	//根据传入的数组自动插入相应的div标签
+        	for(var i=0;i<arr.length;i++){
+        		var e = document.createElement("div");
+        		var a = "<a style='cursor:pointer'>"+arr[i]+"</a>";
+        		e.innerHTML+=a;
+        		divpar.appendChild(e);
+        	}
+        	//根据数组长度计算每个标签的长度
+        	var len=1200/arr.length;
+        	console.log(len);
+        	//获取子节点
+        	var child = divpar.children;
+        	
+        	for (var i=0;i<arr.length;i++) {
+        		child[i].style.width=len+"px";
+        	}
+        }
+ 		//车型对比生成select下拉菜单
+ 		function compare(){
+ 			var arr=['奥迪 e-tron','奥迪A3 Sportback2020','奥迪A3 Limousine2020','奥迪A3 Cabriolet','奥迪RS 3 Limousine','奥迪A4L','奥迪A4 allroad quattro','奥迪RS 4 Avant','奥迪S4','奥迪A4 Avant先锋派','奥迪A5 Sportback','奥迪A5 Coupe','奥迪A5 Cabriolet','奥迪S5 Sportback','奥迪S5 Coupe','奥迪S5 Cabriolet','奥迪RS 5 Sportback','奥迪RS 5 Coupe','奥迪A6L 2020年型','奥迪A6 Avant先锋派','奥迪A6 allroad探索家','奥迪S6','奥迪RS 6 Avant','奥迪A6L TFSI e','奥迪A7 Sportback','奥迪A8L 19年型Plus版','奥迪Q2L 2020年型','奥迪Q2L e-tron','奥迪Q3 2020年型','奥迪Q3轿跑','奥迪Q5L','奥迪SQ5','奥迪Q7','奥迪Q7 e-tron','奥迪Q8','奥迪R8 V10 Coupe','奥迪R8 V10 Spyder','探岳X','探岳 Tayron','探岳 GTE','探岳 R-line','探歌 T-ROC','CC','全新迈腾','全新迈腾GTE','速腾Long-Wheelbase','高尔夫','高尔夫GTI','高尔夫R-line','高尔夫·嘉旅','高尔夫·纯电','蔚领C-TREK','宝来','宝来·传奇','宝来·纯电','探影TACQUA'];
+ 			var divpar = document.getElementsByClassName("diffcont")[0];
+ 			divpar.innerHTML="";
+ 			//生成两个select下拉菜单，用于客户选择车型
+ 			var e1 = document.createElement("select");
+ 			for(var i = 0;i<arr.length;i++){
+ 				var opt = "<option>"+arr[i]+"</option>";
+ 				e1.innerHTML+=opt;
+ 			}
+ 			//复制子节点
+ 			var e2 =e1.cloneNode(true);
+ 			var tip1 = "<a>车辆1：</a>";
+ 			var tip2 = "<a>车辆2：</a>"
+ 			divpar.innerHTML +=tip1; 
+ 			divpar.appendChild(e1);
+ 			divpar.innerHTML +=tip2;
+ 			divpar.appendChild(e2);
+ 			var e3 = document.createElement("button");
+ 			e3.innerHTML="比较一下";
+ 			divpar.appendChild(e3);
+ 			adiustStyle();
+ 		}
+        //调整select选项样式
+ 		function adiustStyle(){
+ 			var divpar = document.getElementsByClassName("diffcont")[0];
+ 			divpar.style.display="flex";
+ 			divpar.style.alignItems="center";
+ 			//设置a标签的文字样式
+ 			var aa = divpar.getElementsByTagName("a");
+ 			for(var i=0;i<aa.length;i++){
+ 				aa[i].style.fontSize="20px";
+ 				aa[i].style.marginLeft="140px";
+ 				aa[i].lineHeight="60px";
+ 			}
+ 			//设置select标签的文字样式
+ 			var ss = divpar.getElementsByTagName("select");
+ 			for(var i=0;i<ss.length;i++){
+ 				ss[i].style.fontSize="20px";
+ 				ss[i].style.marginLeft="10px";
+ 				ss[i].lineHeight="60px";
+ 			}
+ 			//设置button标签的文字样式和点击方法
+ 			var btn = divpar.getElementsByTagName("button")[0];
+ 			btn.style.marginLeft="10px";
+ 			btn.style.fontSize="20px";
+ 		}
+        
+        //生成页面全部车型图
+        function imgapply(){
+            var car_img = document.getElementsByClassName("car_img");
+            console.log(car_img);
+            for(var i=0;i<car_img.length;i++){
+                if(i<11){
+                    car_img[i].style.backgroundImage="url(img/chose/audi/audi"+i+".jpg)";
+                }else if(i<20){
+                    car_img[i].style.backgroundImage="url(img/chose/vw/vw"+i+".jpg)";
+                }else{
+                    car_img[i].style.backgroundImage="url(img/chose/jetta/jetta"+i+".jpg)";
+                }
+                
+            }
+        }
+        //利用jQuery实现不同点击，展示不同页面
+        $(document).ready(function(){
+            $(".diffcont").on("click","div",function(){
+                var text=$(this).text();
+                //按品牌查看时
+                if($(".diffcont>div").length==3){
+                    //console.log("品牌查看");
+                    if(text=="奥迪"){
+                        $("#allAudiCar").slideDown(500);
+                        $("#allAudiCar").children().css("display","block");
+                        $("#allVWCar").slideUp(500);
+                        $("#allJettaCar").slideUp(500);
+                    };
+                    if(text=="大众"){
+                        $("#allAudiCar").slideUp(500);
+                        $("#allVWCar").slideDown(500);
+                        $("#allVWCar").children().css("display","block");
+                        $("#allJettaCar").slideUp(500);
+                    };
+                    if(text=="捷达"){
+                        $("#allAudiCar").slideUp(500);
+                        $("#allVWCar").slideUp(500);
+                        $("#allJettaCar").slideDown(500);
+                        $("#allJettaCar").children().css("display","block");
+                    };
+                }//按售价查看
+                else if($(".diffcont>div").length==7){
+                    console.log("价格查看");
+                    $(".car_frame").slideUp(500);
+                    console.log(text);
+                    switch(text){
+                        case "10万以下":
+                            text="l10";
+                            break;
+                        case "10~15万":
+                            text="m10";
+                            break;
+                        case "15~20万":
+                            text="m15";
+                            break;
+                        case "20~25万":
+                            text="m20";
+                            break;
+                        case "25~30万":
+                            text="m25";
+                            break;
+                        case "30~40万":
+                            text="m30";
+                            break;
+                        case "40万以上":
+                            text="m40";
+                            break;
+                    }
+                    $("."+text).parent().css("display","block");
+                    $("."+text).slideDown(500);
+                }//按车型查看时
+                else if($(".diffcont>div").length==15){
+                    //console.log("车型查看");
+                    $(".car_frame").slideUp(500);
+                    if(text=="迈腾"){
+                        text="Magotan";
+                    }else if(text=="速腾"){
+                        text="Sagitar";
+                    }
+                    $("."+text).parent().css("display","block");
+                    $("."+text).slideDown(500);
+                }
+            })
+        })
+    </script>
+</head>
+<body onload="init()">
+    <div id="container">
+        <!-- 顶部 -->
+        <div id="top">
+            <!-- 右部连接到其他网站 -->
+            <div class="left"   >
+                <li><a href="http://www.faw.com.cn/fawcn/373704/index.html" target="_blank">一汽集团</a></li>
+                <li><a href="#dzzj">大众之家</a></li>
+                <li><a href="https://www.xcar.com.cn/bbs/forumdisplay.php?fid=10003" target="_blank">大众俱乐部</a></li>
+                <li><a href="https://www.audi.cn/cn/web/zh.html"  target="_blank">奥迪品牌</a></li>
+                <li><a href="https://jetta.faw-vw.com/" target="_blank">捷达品牌</a></li>
+            </div>
+            <!-- 左部是企业logo -->
+            <div class="right">
+                <div><img src="img/logo.png" alt="官方Logo"/></div>
+            </div>
+            <div class="bottom">
+                <div class="last" >
+                    <p>车之道</p>
+                    <img id="arrowl" src="img/chose/leftarrow.png" onclick="back()" onmouseover="show()" onmouseout="hide()"/>
+                </div>
+                <div class="img"></div>
+                <div class="next" onclick="next()" onmouseover="show()" onmouseout="hide()">
+                    <img id="arrowr" src="img/chose/rightarrow.png"/>
+                    <p style="margin:90px 36px 0px 0px;">为大众</p>
+                </div>
+            </div>
+        </div>
+        <!-- index栏 -->
+        <div id="index">
+            <div class="title">FAW-VW 全部车型</div>
+            <div class="xuan">
+            	<div class="pp"><a href="javascript:void(0);" onclick="gene(['奥迪','大众','捷达'])">按品牌查看</a></div>
+            	<div class="cx"><a href="javascript:void(0);" onclick="gene(['A6L','R8','Q3','A3','A4','A5','Tayron ','T-Roc','CC','迈腾','速腾','Golf','C-Trek','Bora','Tacqua'])">按车型查看</a></div>
+            	<div class="tjsx"><a href="javascript:void(0);" onclick="gene(['10万以下','10~15万','15~20万','20~25万','25~30万','30~40万','40万以上'])">按售价筛选</a></div>
+            	<div class="cldb"><a href="javascript:void(0);" onclick="compare()">车辆对比</a></div>
+            </div>
+            <div class="diffcont">
+            	<!--js执行不同点击，显示不同的候选内容-->
+            </div>
+        </div>
+        <!-- 所有的Audi车型信息 -->
+        <div id="allAudiCar">
+            <div class="car_frame R8 m40">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">R8 Coupe</p>
+                        <p class="price">起售价:1,952,800.00 RMB</p>
+                        <p class="disc">最大功率：449kW | 百公里加速：3.2秒 | 最高车速：330km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://contact.audi.cn/contact/performanceequipment_getequipment.htm?carStyleId=10312">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.audi.cn/testdrive.html">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐3款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>奥迪R8 V10 Coupe</td>
+                            <td>12.1</td>
+                            <td>1,952,800元</td>
+                        </tr>
+                        <tr>
+                            <td>奥迪R8 V10 Coupe Performance</td>
+                            <td>12.8</td>
+                            <td>2,299,800元</td>
+                        </tr>
+                        <tr>
+                            <td>奥迪R8 V10 Spyder</td>
+                            <td>12.1</td>
+                            <td>2,136,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame e-tron m40">
+                <div class="car">
+                    <div class="car_img "></div>
+                    <div class="car_info">
+                        <p class="name">奥迪 e-tron</p>
+                        <p class="price">起售价:692,800.00 RMB</p>
+                        <p class="disc">最大功率：449kW | 百公里加速：3.2秒 | 最高车速：330km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://www.audi.cn/cn/web/zh/models/e-tron/e-tron.html">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.audi.cn/testdrive.html">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐4款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>电池组容量</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>e-tron quattro时尚型</td>
+                            <td>95KW·h</td>
+                            <td>658,800元</td>
+                        </tr>
+                        <tr>
+                            <td>e-tron quattro技术型</td>
+                            <td>95KW·h</td>
+                            <td>726,800元</td>
+                        </tr>
+                        <tr>
+                            <td>e-tron quattro专享型</td>
+                            <td>95KW·h</td>
+                            <td>766,800元</td>
+                        </tr>
+                        <tr>
+                            <td>e-tron quattro<br/>全球限量版 Edition1</td>
+                            <td>95KW·h</td>
+                            <td>828,600元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame  A8 m40">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">奥迪A8L Plus版</p>
+                        <p class="price">起售价:838,800.00 RMB</p>
+                        <p class="disc">最大功率：250kW | 百公里加速：5.7秒 | 最高车速：250km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://www.audi.cn/cn/web/zh/models/a8/a8l.html">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.audi.cn/testdrive.html">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐1款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>A8L 19年型Plus版</td>
+                            <td>8.3</td>
+                            <td>838,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame  A7 m40">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">A7 Sportback</p>
+                        <p class="price">起售价:573,800.00 RMB</p>
+                        <p class="disc">最大功率：180kW | 百公里加速：7秒 | 最高车速：250km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://www.audi.cn/cn/web/zh/models/a7/a7_sportback.html">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.audi.cn/testdrive.html">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐2款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>A7 40TFSI 豪华型</td>
+                            <td>6.3</td>
+                            <td>573,800元</td>
+                        </tr>
+                        <tr>
+                            <td>A7 45TFSI专享型</td>
+                            <td>6.5</td>
+                            <td>704,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame  A6L m40">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info a6">
+                        <p class="name">奥迪A6L</p>
+                        <p class="price">起售价:409,800.00 RMB</p>
+                        <p class="disc">最大功率：250kW | 百公里加速：5.6秒 | 最高车速：250km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="detail.html">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.audi.cn/testdrive.html">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐5款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>A6L</td>
+                            <td>8.0</td>
+                            <td>409,800元</td>
+                        </tr>
+                        <tr>
+                            <td>A6L Avant</td>
+                            <td>6.3</td>
+                            <td>449,800元</td>
+                        </tr>
+                        <tr>
+                            <td>A6L allroad quattro</td>
+                            <td>8.2</td>
+                            <td>560,800元</td>
+                        </tr>
+                        <tr>
+                            <td>S6</td>
+                            <td>9.9</td>
+                            <td>905,800元</td>
+                        </tr>
+                        <tr>
+                            <td>A6L TFSI e</td>
+                            <td>2.1(混合动力模式)</td>
+                            <td>508,000元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame A5 m30">
+                <div class="car">
+                    <div class="car_img a5"></div>
+                    <div class="car_info">
+                        <p class="name">A5 Sportback</p>
+                        <p class="price">起售价:371,800.00 RMB</p>
+                        <p class="disc">最大功率：185kW | 百公里加速：6.0秒 | 最高车速：250km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://www.audi.cn/cn/web/zh/models/a5/a5_sportback.html">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.audi.cn/testdrive.html">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐6款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>A5 Sportback</td>
+                            <td>6.0</td>
+                            <td>305,800元</td>
+                        </tr>
+                        <tr>
+                            <td>A5 Coupe</td>
+                            <td>5.8</td>
+                            <td>371,800元</td>
+                        </tr>
+                        <tr>
+                            <td>A5 Cabriolet</td>
+                            <td>6.2</td>
+                            <td>476,800元</td>
+                        </tr>
+                        <tr>
+                            <td>S5 Sportback</td>
+                            <td>8.4</td>
+                            <td>622,800元</td>
+                        </tr>
+                        <tr>
+                            <td>S5 Coupe</td>
+                            <td>8.2</td>
+                            <td>622,800元</td>
+                        </tr>
+                        <tr>
+                            <td>S5 Cabriolet</td>
+                            <td>8.7</td>
+                            <td>698,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame A4 m30">
+                <div class="car">
+                    <div class="car_img a4"></div>
+                    <div class="car_info">
+                        <p class="name">奥迪A4L</p>
+                        <p class="price">起售价:305,800.00 RMB</p>
+                        <p class="disc">最大功率：185kW | 百公里加速：6.6秒 | 最高车速：240km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://www.audi.cn/cn/web/zh/models/a4/a4l.html">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.audi.cn/testdrive.html">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐4款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>A4L</td>
+                            <td>6.1</td>
+                            <td>305,800元</td>
+                        </tr>
+                        <tr>
+                            <td>A4 Avant</td>
+                            <td>6.1</td>
+                            <td>341,800元</td>
+                        </tr>
+                        <tr>
+                            <td>A4 allroad quattro</td>
+                            <td>7.5</td>
+                            <td>392,800元</td>
+                        </tr>
+                        <tr>
+                            <td>S4 limousine</td>
+                            <td>8.2</td>
+                            <td>459,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame Q8 m40">
+                <div class="car">
+                    <div class="car_img q8"></div>
+                    <div class="car_info">
+                        <p class="name">奥迪 Q8</p>
+                        <p class="price">起售价:768,800.00 RMB</p>
+                        <p class="disc">最大功率：250kW | 百公里加速：6.2秒 | 最高车速：250km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://www.audi.cn/cn/web/zh/models/q8/q8.html">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.audi.cn/testdrive.html">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐1款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>Q8</td>
+                            <td>8.9</td>
+                            <td>768,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame RS m40">
+                <div class="car">
+                    <div class="car_img rs"></div>
+                    <div class="car_info">
+                        <p class="name">RS系列</p>
+                        <p class="price">起售价:513,800.00 RMB</p>
+                        <p class="disc">最大功率：412kW | 百公里加速：3.9秒 | 最高车速：250km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://www.audi.cn/cn/web/zh/models/a5/rs5_sportback.html">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.audi.cn/testdrive.html">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐5款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>RS6 Avant</td>
+                            <td>10.0</td>
+                            <td>1,357,800元</td>
+                        </tr>
+                        <tr>
+                            <td>RS5 Sportback</td>
+                            <td>9.1</td>
+                            <td>846,800元</td>
+                        </tr>
+                        <tr>
+                            <td>RS5 Coupe</td>
+                            <td>9.4</td>
+                            <td>869,800元</td>
+                        </tr>
+                        <tr>
+                            <td>RS4 Avant</td>
+                            <td>9.5</td>
+                            <td>822,800元</td>
+                        </tr>
+                        <tr>
+                            <td>RS3 limousine</td>
+                            <td>9.5</td>
+                            <td>513,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame Q3 m25">
+                <div class="car">
+                    <div class="car_img q3"></div>
+                    <div class="car_info">
+                        <p class="name">奥迪 Q3</p>
+                        <p class="price">起售价:271,800.00 RMB</p>
+                        <p class="disc">最大功率：162kW | 百公里加速：7.6秒 | 最高车速：200km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://www.audi.cn/cn/web/zh/models/q3/q3.html">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.audi.cn/testdrive.html">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐2款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>Q3</td>
+                            <td>6.7</td>
+                            <td>271,800元</td>
+                        </tr>
+                        <tr>
+                            <td>Q3 Sportback</td>
+                            <td>7.7</td>
+                            <td>2,87,300元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame A3 m15">
+                <div class="car">
+                    <div class="car_img a3"></div>
+                    <div class="car_info">
+                        <p class="name">奥迪A3 Sportback</p>
+                        <p class="price">起售价:1,93,200.00 RMB</p>
+                        <p class="disc">最大功率：140kW | 百公里加速：7.2秒 | 最高车速：250km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://www.audi.cn/cn/web/zh/models/a3/a3_sportback.html">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.audi.cn/testdrive.html">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐3款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>A3 Sportback</td>
+                            <td>5.8</td>
+                            <td>193,200元</td>
+                        </tr>
+                        <tr>
+                            <td>A3 limousine</td>
+                            <td>5.8</td>
+                            <td>199,200元</td>
+                        </tr>
+                        <tr>
+                            <td>A3 Cabriolet</td>
+                            <td>6.5</td>
+                            <td>330,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <!-- 所有的VW车型信息 -->
+        <div id="allVWCar">
+            <div class="car_frame Tayron m15">
+                <div class="car">
+                    <div class="car_img" style="background-image: url(img/chose/vw/vw0.png);"></div>
+                    <div class="car_info">
+                        <p class="name">探岳Tayron</p>
+                        <p class="price">起售价:185,900.00 RMB</p>
+                        <p class="disc">最大功率：162kW | 百公里加速：7.6秒 | 最高车速：200km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://vw.faw-vw.com/models/tayron/">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.faw-vw.com/dealer/search.htm">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐4款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>探岳Tayron</td>
+                            <td>6.7</td>
+                            <td>185,900元</td>
+                        </tr>
+                        <tr>
+                            <td>探岳Tayron X</td>
+                            <td>6.8</td>
+                            <td>235,800元</td>
+                        </tr>
+                        <tr>
+                            <td>探岳GTE</td>
+                            <td>2.0</td>
+                            <td>249,800元</td>
+                        </tr>
+                        <tr>
+                            <td>探岳R-line</td>
+                            <td>7.5</td>
+                            <td>249,900元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame T-Roc m15">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">探歌T-Roc</p>
+                        <p class="price">起售价:157,800.00 RMB</p>
+                        <p class="disc">最大功率：110kW | 百公里加速：9.1秒 | 最高车速：200km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://vw.faw-vw.com/models/t-roc/">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.faw-vw.com/dealer/search.htm">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐4款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>230TSI DSG两驱R-Line</td>
+                            <td>5.8</td>
+                            <td>131,800元</td>
+                        </tr>
+                        <tr>
+                            <td>280TSI DSG两驱进取型</td>
+                            <td>5.9</td>
+                            <td>139,800元</td>
+                        </tr>
+                        <tr>
+                            <td>280TSI DSG两驱R-Line</td>
+                            <td>5.9</td>
+                            <td>149,800元</td>
+                        </tr>
+                        <tr>
+                            <td>280TSI DSG四驱豪华型</td>
+                            <td>7.0</td>
+                            <td>176,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame CC m20">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">CC</p>
+                        <p class="price">起售价:246,800.00 RMB</p>
+                        <p class="disc">最大功率：162kW | 百公里加速：7.5秒 | 最高车速：230km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://vw.faw-vw.com/models/cc/allnewcc/">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.faw-vw.com/dealer/search.htm">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐3款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>380TSI 曜颜版 国V</td>
+                            <td>6.7</td>
+                            <td>270,800元</td>
+                        </tr>
+                        <tr>
+                            <td>380TSI 魅颜版 国VI</td>
+                            <td>7.0</td>
+                            <td>248,800元</td>
+                        </tr>
+                        <tr>
+                            <td>330TSI 魅颜版 国VI</td>
+                            <td>6.4</td>
+                            <td>229,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame Magotan m15">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">迈腾 Magotan</p>
+                        <p class="price">起售价:186,900.00 RMB</p>
+                        <p class="disc">最大功率：162kW | 百公里加速：7.2秒 | 最高车速：210km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://vw.faw-vw.com/models/new-magotan/">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.faw-vw.com/dealer/search.htm">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐3款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>280TSI DSG 领先型</td>
+                            <td>5.8</td>
+                            <td>1,93,900元</td>
+                        </tr>
+                        <tr>
+                            <td>330TSI DSG 尊贵型</td>
+                            <td>6.3</td>
+                            <td>242,900元</td>
+                        </tr>
+                        <tr>
+                            <td>380TSI DSG 旗舰型</td>
+                            <td>6.6</td>
+                            <td>286,900元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame Sagitar m10">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">速腾Sagitar</p>
+                        <p class="price">起售价:108,900.00 RMB</p>
+                        <p class="disc">最大功率：110kW | 百公里加速：9.3秒 | 最高车速：200km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://vw.faw-vw.com/models/sagitarlong-wheelbase/">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.faw-vw.com/dealer/search.htm">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐3款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>200TSI DSG时尚型 国VI</td>
+                            <td>5.5</td>
+                            <td>1,08,900元</td>
+                        </tr>
+                        <tr>
+                            <td>280TSI DSG旗舰型 国VI</td>
+                            <td>5.7</td>
+                            <td>159,900元</td>
+                        </tr>
+                        <tr>
+                            <td>280TSI DSG R-Line 国VI</td>
+                            <td>5.7</td>
+                            <td>137,900元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame Golf m10">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">高尔夫 Golf</p>
+                        <p class="price">起售价:142,300.00 RMB</p>
+                        <p class="disc">最大功率：162kW | 百公里加速：6.9秒 | 最高车速：240km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://vw.faw-vw.com/models/newgolf/">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.faw-vw.com/dealer/search.htm">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐5款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>200TSI DSG舒适型进取版</td>
+                            <td>5.4</td>
+                            <td>142,300元</td>
+                        </tr>
+                        <tr>
+                            <td>GTI</td>
+                            <td>6.5</td>
+                            <td>234,200元</td>
+                        </tr>
+                        <tr>
+                            <td>高尔夫 R-Line</td>
+                            <td>6.5</td>
+                            <td>170,700元</td>
+                        </tr>
+                        <tr>
+                            <td>高尔夫嘉旅</td>
+                            <td>5.7</td>
+                            <td>144,000元</td>
+                        </tr>
+                        <tr>
+                            <td>高尔夫纯电</td>
+                            <td>-</td>
+                            <td>147,700元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame C-Trek m10">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">蔚领 C-Trek</p>
+                        <p class="price">起售价:125,900.00 RMB</p>
+                        <p class="disc">最大功率：82kW | 百公里加速：13.8秒 | 最高车速：180km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://vw.faw-vw.com/models/c-trek/">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.faw-vw.com/dealer/search.htm">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐3款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>2020款 1.5L 自动豪华型</td>
+                            <td>6.0</td>
+                            <td>126,700元</td>
+                        </tr>
+                        <tr>
+                            <td>2020款 1.5L 自动舒适型</td>
+                            <td>6.0</td>
+                            <td>109,700元</td>
+                        </tr>
+                        <tr>
+                            <td>2020款 1.5L 自动时尚型</td>
+                            <td>6.0</td>
+                            <td>102,900元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame Bora l10">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">宝来 Bora</p>
+                        <p class="price">起售价:98,800.00 RMB</p>
+                        <p class="disc">最大功率：110kW | 百公里加速：13.7秒 | 最高车速：200km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://vw.faw-vw.com/models/mqbbora/">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.faw-vw.com/dealer/search.htm">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐2款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>2020款 1.5L 自动豪华型</td>
+                            <td>5.7</td>
+                            <td>123,300元</td>
+                        </tr>
+                        <tr>
+                            <td>2020款 280TSI DSG精英型</td>
+                            <td>5.5</td>
+                            <td>98,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame Tacqua m10">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">探影 Tacqua</p>
+                        <p class="price">起售价:114,900.00 RMB</p>
+                        <p class="disc">最大功率：110kW | 百公里加速：13.4秒 | 最高车速：190km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://vw.faw-vw.com/models/tacqua/">了解详情</a></p>
+                        <p class="p2"><a href="https://contact.faw-vw.com/dealer/search.htm">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐3款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>2020款 1.5L 自动 悦</td>
+                            <td>5.9</td>
+                            <td>119,900元</td>
+                        </tr>
+                        <tr>
+                            <td>2020款 1.5L 自动 悦Pro</td>
+                            <td>5.9</td>
+                            <td>131,900元</td>
+                        </tr>
+                        <tr>
+                            <td>2020款 280TSI 星耀限量版</td>
+                            <td>5.8</td>
+                            <td>127,900元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- 所有的Jetta车型信息 -->
+        <div id="allJettaCar">
+            <div class="car_frame">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">Jetta VS5</p>
+                        <p class="price">起售价:84,800.00 RMB</p>
+                        <p class="disc">最大功率：110kW | 百公里加速：9.5秒 | 最高车速：170km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://jetta.faw-vw.com/vehicle-details/?code=0L">了解详情</a></p>
+                        <p class="p2"><a href="https://jetta.faw-vw.com/car-buying-tool/?type=testDrive">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐4款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>2020款 280TSI 自动三十而立版</td>
+                            <td>7.5</td>
+                            <td>98,800元</td>
+                        </tr>
+                        <tr>
+                            <td>2019款 280TSI 自动进取型</td>
+                            <td>6.8</td>
+                            <td>95,800元</td>
+                        </tr>
+                        <tr>
+                            <td>2019款 280TSI 自动悦享型</td>
+                            <td>6.8</td>
+                            <td>102,800元</td>
+                        </tr>
+                        <tr>
+                            <td>2019款 280TSI 自动荣耀型</td>
+                            <td>6.8</td>
+                            <td>112,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">Jetta VS7</p>
+                        <p class="price">起售价:84,800.00 RMB</p>
+                        <p class="disc">最大功率：110kW | 百公里加速：9.7秒 | 最高车速：180km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://jetta.faw-vw.com/vehicle-details/?code=L0">了解详情</a></p>
+                        <p class="p2"><a href="https://jetta.faw-vw.com/car-buying-tool/?type=testDrive">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐2款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>2020款 1.4T 自动荣耀型</td>
+                            <td>6.7</td>
+                            <td>134,800元</td>
+                        </tr>
+                        <tr>
+                            <td>2020款 1.4T 自动进取型</td>
+                            <td>6.7</td>
+                            <td>84,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="car_frame">
+                <div class="car">
+                    <div class="car_img"></div>
+                    <div class="car_info">
+                        <p class="name">Jetta VA3</p>
+                        <p class="price">起售价:65,800.00 RMB</p>
+                        <p class="disc">最大功率：82kW | 百公里加速：12.5秒 | 最高车速：170km/h</p>
+                    </div>
+                    <div class="car_link">
+                        <p class="p1"><a href="https://jetta.faw-vw.com/vehicle-details/?code=0M">了解详情</a></p>
+                        <p class="p2"><a href="https://jetta.faw-vw.com/car-buying-tool/?type=testDrive">预约试驾</a></p>
+                    </div>
+                </div>
+                <div class="car_list">
+                    <table cellspacing="0" bgcolor="#e5e5e5">
+                        <tr>
+                            <th colspan="3">推荐3款配置</th>
+                        </tr>
+                        <tr>
+                            <td>配置</td>
+                            <td>百公里油耗:L</td>
+                            <td>售价:元</td>
+                        </tr>
+                        <tr>
+                            <td>2020款 1.5L 自动向上人生版</td>
+                            <td>5.6</td>
+                            <td>70,800元</td>
+                        </tr>
+                        <tr>
+                            <td>2019款 1.5L 自动悦享版</td>
+                            <td>5.6</td>
+                            <td>77,800元</td>
+                        </tr>
+                        <tr>
+                            <td>2019款 1.5L 自动荣耀版</td>
+                            <td>5.6</td>
+                            <td>86,800元</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- 底部版权/社交信息 -->
+        <div id="bottom">
+            <div class="link">
+                <table border="0" cellspacing="0">
+                    <tr >
+                        <td style="border-top: solid 1px #ccc;">购车</td>
+                        <td style="border-top: solid 1px #ccc;">服务</td>
+                        <td style="border-top: solid 1px #ccc;">品牌</td>
+                        <td style="border-top: solid 1px #ccc;">社交与电商</td>
+                    </tr>
+                    <tr>
+                        <td><a href="chose.html" target="_blank">车型总览</a></td>
+                        <td><a href="https://contact.faw-vw.com/finance/finance.htm" target="_blank">金融服务</a></td>
+                        <td><a href="https://www.faw-vw.com/" target="_blank">一汽-大众</a></td>
+                        <td><a href="https://vw.faw-vw.com/wechat/weixin.shtml" target="_blank">官方微信</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://vw.faw-vw.com/dasweltauto/" target="_blank">二手车</a></td>
+                        <td><a href="https://contact.faw-vw.com/finance/finance.htm?p=3" target="_blank">延保服务</a></td>
+                        <td><a href="https://vw.faw-vw.com/events/2015/" target="_blank">品牌活动</a></td>
+                        <td><a href="https://weibo.com/fawvw?topnav=1&wvr=5&topsug=1" target="_blank">官方微博</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://contact.faw-vw.com/drive/test_drive.htm" target="_blank">预约试驾</a></td>
+                        <td><a href="https://vw-entrynavi.autonavi.com/entrynavi/download/map_data?&brand=vw&project=entrynavi&channel=vw-entry&timestamp=1599654281338&signature_nonce=108199&signature=NjA3YTdmMWZjNGQxYmVhN2E5YWQzMmZjNDk3ZmM0ZjMyYWJlYmM4YTNiY2E2OGNjYjAwMWM5NjdlZGQzOTQ4Mg%3D%3D&signature_method=HMAC-SHA256&signature_version=1.0" target="_blank">地图下载</a></td>
+                        <td><a href="https://contact.faw-vw.com/brand/dealer_recruitment.htm" target="_blank">经销商招募</a></td>
+                        <td><a href="https://mall.faw-vw.com/v2/index.html" target="_blank">一汽-大众商城</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://contact.faw-vw.com/tools/comparison.htm" target="_blank">车型对比</a></td>
+                        <td><a href="http://vwimccs.faw-vw.com/webchat/chatmain.jsp?workgroup=ar1000@workgroup.10.226.60.176&chatID=qV7eEBnPx8" target="_blank">在线客服</a></td>
+                        <td></td>
+                        <td><a href="https://vw.faw-vw.com/wechat/app.shtml" target="_blank">超级APP</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://contact.faw-vw.com/dealer/search.htm" target="_blank">经销商查询</a></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="https://faw-vw.tmall.com/" target="_blank">天猫旗舰店</a></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="https://mall.jd.com/index-920366.html" target="_blank">京东旗舰店</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class=copyright>
+                <li class="c_l">法律声明 | 隐私条款 | 吉ICP备09000793号 | 吉公安备22010602000029号</li>
+                <li class="c_r">©一汽-大众汽车有限公司</li>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
